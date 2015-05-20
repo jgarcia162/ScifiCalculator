@@ -24,7 +24,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package com.example.joe.plus;
+package com.udojava.evalex;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -221,12 +221,12 @@ public class Expression {
 	/**
 	 * All defined operators with name and implementation.
 	 */
-	private Map<String, Operator> operators = new HashMap<String, Operator>();
+	private Map<String, Operator> operators = new HashMap<String, Expression.Operator>();
 
 	/**
 	 * All defined functions with name and implementation.
 	 */
-	private Map<String, Function> functions = new HashMap<String, Function>();
+	private Map<String, Function> functions = new HashMap<String, Expression.Function>();
 
 	/**
 	 * All defined variables with name and value.
