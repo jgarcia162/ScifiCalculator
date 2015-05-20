@@ -9,7 +9,7 @@
         android:id="@+id/tableRow0">
 
     <TextView
-        android:id="@+id/landdisplay"
+        android:id="@+id/display"
         android:padding="5dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
@@ -30,7 +30,8 @@
         android:padding="5dp"
         android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="cos"/>
 
     <Button
         android:id="@+id/sin"
@@ -111,8 +112,8 @@
 
     <Button
         android:id="@+id/square"
-        android:text="√"
-        android:textSize="25sp"
+        android:text="SQRT"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
         android:layout_width="wrap_content"
@@ -123,7 +124,7 @@
 
     <Button
         android:id="@+id/ln"
-        android:text="@string/ln"
+        android:text="LOG10"
         android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
@@ -201,7 +202,7 @@
 
     <Button
         android:id="@+id/pi"
-        android:text="π"
+        android:text="PI"
         android:textSize="25sp"
         android:textStyle="bold"
         android:padding="5dp"
@@ -212,9 +213,9 @@
         style="?android:attr/borderlessButtonStyle"/>
 
     <Button
-        android:id="@+id/e"
+        android:id="@+id/Deg"
         android:textAllCaps="false"
-        android:text="e"
+        android:text="DEG"
         android:textSize="25sp"
         android:textStyle="bold"
         android:padding="5dp"
@@ -291,7 +292,7 @@
 
     <Button
         android:id="@+id/BigE"
-        android:text="E"
+        android:text="^"
         android:padding="5dp"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -378,6 +379,7 @@
 
     <TableRow
         android:id="@+id/tableRow5">
+
         <Button
             android:id="@+id/cosh"
             android:text="@string/cosh"
