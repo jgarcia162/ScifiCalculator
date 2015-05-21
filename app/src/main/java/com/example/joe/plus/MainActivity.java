@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.math.BigDecimal;
 
@@ -16,13 +17,14 @@ import ext.Expression;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+
+        final TextView display = (TextView) findViewById(R.id.display);
 
         findViewById(R.id.zero).setOnClickListener(this);
         findViewById(R.id.number1).setOnClickListener(this);
@@ -35,15 +37,26 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.number8).setOnClickListener(this);
         findViewById(R.id.number9).setOnClickListener(this);
 
-        final TextView display = (TextView) findViewById(R.id.display);
+
+        final Button decimalbutton = (Button) findViewById(R.id.decimal);
+        decimalbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(display.getText().equals("")){
+                    display.append("0" + decimalbutton.getText().toString());
+                }else if(display.getText().charAt(display.length()-1) != '.' && !Character.isDigit(display.getText().charAt(display.length()-1))){
+                    display.append("0" + decimalbutton.getText().toString());
+                }else if(display.getText().charAt(display.length()-1) != '.'){
+                    display.append(decimalbutton.getText().toString());
+                }
+
+            }
+        });
 
         final Button plusbutton = (Button) findViewById(R.id.plus);
         plusbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(display.getText().charAt(display.length()-1) != '+'){
                     display.append(plusbutton.getText().toString());
-                }else{
-
                 }
             }
         });
@@ -53,8 +66,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void onClick(View v) {
                 if(display.getText().charAt(display.length()-1) != '-'){
                     display.append(minusbutton.getText().toString());
-                }else{
-
                 }
             }
         });
@@ -64,8 +75,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void onClick(View v) {
                 if(display.getText().charAt(display.length()-1) != '/'){
                     display.append(divdbutton.getText().toString());
-                }else{
-
                 }
             }
         });
@@ -75,23 +84,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void onClick(View v) {
                 if(display.getText().charAt(display.length()-1) != '*'){
                     display.append(mulbutton.getText().toString());
-                }else{
-
                 }
             }
         });
 
-            final Button decimalbutton = (Button) findViewById(R.id.decimal);
-            decimalbutton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    if(display.getText().charAt(display.length()-1) != '.'){
-                        display.append(decimalbutton.getText().toString());
-                    }else{
-
-                    }
-
+        final Button percentbutton = (Button) findViewById(R.id.percent);
+        percentbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(display.getText().charAt(display.length()-1) != '%'){
+                    display.append(percentbutton.getText().toString());
                 }
-            });
+            }
+        });
+
+
 
         final Button equalbutton = (Button) findViewById(R.id.equal);
         equalbutton.setOnClickListener(new View.OnClickListener() {
@@ -109,8 +115,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     display.setText(result);
 
                 } catch (Exception e) {
-
                     display.setText("syntax error");
+                }
+            }
+        });
+
+        final Button negbutton = (Button) findViewById(R.id.negative);
+        negbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(display.getText().charAt(0) != '-'){
+                    display.setText("-" + display.getText().toString());
                 }
             }
         });
@@ -125,8 +139,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final Button deletebutton = (Button) findViewById(R.id.delete);
         deletebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-            }
+                String str= display.getText().toString();
+                if (str.length() > 1 ) {
+                    str = str.substring(0, str.length() - 1);
+                    display.setText(str);
+                }
+                else if (str.length() <=1 ) {
+                    display.setText("");
+                }
+        }
         });
 
         if (isLandscape) {
@@ -134,7 +155,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             sinbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (sinbutton != null) {
-                        display.append(sinbutton.getText().toString());
+                        display.append(sinbutton.getText().toString() + "(");
                     }
                 }
             });
@@ -145,7 +166,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             cosbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (cosbutton != null) {
-                        display.append(cosbutton.getText().toString());
+                        display.append(cosbutton.getText().toString() + "(");
                     }
                 }
             });
@@ -156,7 +177,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             tanbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (tanbutton != null) {
-                        display.append(tanbutton.getText().toString());
+                        display.append(tanbutton.getText().toString() + "(");
                     }
                 }
             });
@@ -167,7 +188,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             sqrbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (sqrbutton != null) {
-                        display.append(sqrbutton.getText().toString());
+                        display.append(sqrbutton.getText().toString() + "(");
                     }
                 }
             });
@@ -190,7 +211,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             logbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (logbutton != null) {
-                        display.append(logbutton.getText().toString());
+                        display.append(logbutton.getText().toString() + "(");
                     }
                 }
             });
@@ -212,7 +233,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             degbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (degbutton != null) {
-                        display.append(degbutton.getText().toString());
+                        display.append(degbutton.getText().toString() + "(");
                     }
                 }
             });
@@ -223,7 +244,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             radbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (radbutton != null) {
-                        display.append(radbutton.getText().toString());
+                        display.append(radbutton.getText().toString() + "(");
                     }
                 }
             });
@@ -267,7 +288,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             coshbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (coshbutton != null) {
-                        display.append(coshbutton.getText().toString());
+                        display.append(coshbutton.getText().toString() + "(");
                     }
                 }
             });
@@ -278,7 +299,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             sinhbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (sinhbutton != null) {
-                        display.append(sinhbutton.getText().toString());
+                        display.append(sinhbutton.getText().toString() + "(");
                     }
                 }
             });
@@ -289,13 +310,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
             tanhbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (tanhbutton != null) {
-                        display.append(tanhbutton.getText().toString());
+                        display.append(tanhbutton.getText().toString() + "(");
                     }
                 }
             });
         }
     }
-                    @Override
+
+
+
+    @Override
                     public boolean onCreateOptionsMenu (Menu menu){
                         // Inflate the menu; this adds items to the action bar if it is present.
                         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -313,7 +337,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         if (id == R.id.action_settings) {
                             return true;
                         }
-
                         return super.onOptionsItemSelected(item);
                     }
 
@@ -322,10 +345,30 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final TextView display = (TextView) findViewById(R.id.display);
 
         String buttonPressed = ((Button) view).getText().toString();
+        if(display.getText().equals("0")){
+            display.setText("");
         display.append(buttonPressed);
-
-
-
-
+        }display.append(buttonPressed);
     }
+
+    //TODO
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//
+//        TextView display = (TextView) findViewById(R.id.display);
+//
+//        //super.onSaveInstanceState(outState);
+//
+//        outState.putString(display.getText().toString(), display.getText().toString());
+//    }
+    //TODO
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//
+//        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+//            Toast.makeText(this,"landscape", Toast.LENGTH_LONG).show();
+//        }else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+//            Toast.makeText(this,"portrait",Toast.LENGTH_LONG).show();
+//        }
+//    }
 }
