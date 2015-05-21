@@ -1,14 +1,13 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="4"
     android:orientation="horizontal"
     android:background="#FFFFFF"
-    android:rowCount="6"
     android:id="@+id/table_layout">
 
     <TableRow
         android:id="@+id/tableRow0"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dip" >
@@ -18,12 +17,20 @@
        android:layout_weight="1"
        android:layout_margin="5dp"
        android:layout_width="match_parent"
-       android:layout_height="130dp"/>
+       android:layout_height="130dp"
+       android:textSize="40sp"
+       android:textStyle="bold"
+       android:textColor="#7d669e"
+       android:textDirection="anyRtl"
+       android:background="#FFFFFF"
+       style="?android:attr/borderlessButtonStyle"/>
+
 
    </TableRow>
 
     <TableRow
         android:id="@+id/tableRow1"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dip" >
@@ -83,6 +90,7 @@
 
     <TableRow
         android:id="@+id/tableRow2"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dip" >
@@ -131,9 +139,10 @@
         <Button
             android:id="@+id/delete"
             android:padding="5dp"
-            android:text="D"
+            android:text="d"
             android:textSize="40sp"
             android:textStyle="bold"
+            android:textAllCaps="false"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -146,6 +155,7 @@
 
     <TableRow
         android:id="@+id/tableRow3"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dip" >
@@ -194,7 +204,8 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:layout_margin="5dp"
-            android:text="C"
+            android:text="c"
+            android:textAllCaps="false"
             android:textSize="40sp"
             android:textStyle="bold"
             style="?android:attr/borderlessButtonStyle"
@@ -207,6 +218,7 @@
 
     <TableRow
         android:id="@+id/tableRow4"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dip" >
@@ -267,6 +279,7 @@
 
     <TableRow
         android:id="@+id/tableRow5"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dip" >

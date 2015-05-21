@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,11 @@ import ext.Expression;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
+    String expression;
+    String ANS;
+    TextView display;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +31,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
 
-        final TextView display = (TextView) findViewById(R.id.display);
+        display = (TextView) findViewById(R.id.display);
+
+        if (  (savedInstanceState != null)) {
+            //Restore value of members from saved state
+            display.setText(savedInstanceState.getString("display"));
+        }
+        else {
+
+            expression = "";
+            ANS= "";
+        }
 
         findViewById(R.id.zero).setOnClickListener(this);
         findViewById(R.id.number1).setOnClickListener(this);
@@ -41,21 +58,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final Button decimalbutton = (Button) findViewById(R.id.decimal);
         decimalbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(display.getText().equals("")){
+                if(display.getText().toString().equals("")){
                     display.append("0" + decimalbutton.getText().toString());
-                }else if(display.getText().charAt(display.length()-1) != '.' && !Character.isDigit(display.getText().charAt(display.length()-1))){
+                }else if(display.getText().toString().charAt(display.length()-1) != '.' && !Character.isDigit(display.getText().toString().charAt(display.length()-1))){
                     display.append("0" + decimalbutton.getText().toString());
                 }else if(display.getText().charAt(display.length()-1) != '.'){
                     display.append(decimalbutton.getText().toString());
                 }
-
             }
         });
 
         final Button plusbutton = (Button) findViewById(R.id.plus);
         plusbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(display.getText().charAt(display.length()-1) != '+'){
+                if(display.getText().toString().equals("") || display.getText().toString().charAt(display.length()-1) != '+'){
                     display.append(plusbutton.getText().toString());
                 }
             }
@@ -64,7 +80,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final Button minusbutton = (Button) findViewById(R.id.minus);
         minusbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(display.getText().charAt(display.length()-1) != '-'){
+                if(display.getText().toString().equals("") || display.getText().toString().charAt(display.length()-1) != '-'){
                     display.append(minusbutton.getText().toString());
                 }
             }
@@ -73,7 +89,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final Button divdbutton = (Button) findViewById(R.id.divide);
         divdbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(display.getText().charAt(display.length()-1) != '/'){
+                if(display.getText().toString().equals("") || display.getText().toString().charAt(display.length()-1) != '/'){
                     display.append(divdbutton.getText().toString());
                 }
             }
@@ -82,7 +98,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final Button mulbutton = (Button) findViewById(R.id.multiple);
         mulbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(display.getText().charAt(display.length()-1) != '*'){
+                if(display.getText().toString().equals("") || display.getText().toString().charAt(display.length()-1) != '*'){
                     display.append(mulbutton.getText().toString());
                 }
             }
@@ -96,8 +112,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 }
             }
         });
-
-
 
         final Button equalbutton = (Button) findViewById(R.id.equal);
         equalbutton.setOnClickListener(new View.OnClickListener() {
@@ -123,8 +137,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final Button negbutton = (Button) findViewById(R.id.negative);
         negbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(display.getText().charAt(0) != '-'){
+                if(display.getText().toString().equals("") || display.getText().toString().charAt(0) != '-'){
                     display.setText("-" + display.getText().toString());
+                }else if ( display.getText().toString().charAt(0) == '-'){
+                    display.setText("" + display.getText().toString());
                 }
             }
         });
@@ -240,11 +256,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (isLandscape) {
-            final Button radbutton = (Button) findViewById(R.id.rad);
-            radbutton.setOnClickListener(new View.OnClickListener() {
+            final Button ebutton = (Button) findViewById(R.id.e);
+            ebutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (radbutton != null) {
-                        display.append(radbutton.getText().toString() + "(");
+                    if (ebutton != null) {
+                        display.append(ebutton.getText().toString());
                     }
                 }
             });
@@ -316,9 +332,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
             });
         }
     }
+    //        outState.putString(, display.getText().toString());
+
+    @Override
+    protected void onSaveInstanceState (Bundle outState){
+        outState.putString("display", display.getText().toString());
 
 
+        super.onSaveInstanceState(outState);
 
+
+    }
     @Override
                     public boolean onCreateOptionsMenu (Menu menu){
                         // Inflate the menu; this adds items to the action bar if it is present.
@@ -345,21 +369,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final TextView display = (TextView) findViewById(R.id.display);
 
         String buttonPressed = ((Button) view).getText().toString();
-        if(display.getText().equals("0")){
-            display.setText("");
-        display.append(buttonPressed);
+        if(display.getText().toString().equals("0")){
+            display.setText("" + buttonPressed);
+
         }display.append(buttonPressed);
     }
+
+
 
     //TODO
 //    @Override
 //    protected void onSaveInstanceState(Bundle outState) {
 //
-//        TextView display = (TextView) findViewById(R.id.display);
+//        EditText display = (EditText) findViewById(R.id.display);
 //
 //        //super.onSaveInstanceState(outState);
 //
-//        outState.putString(display.getText().toString(), display.getText().toString());
 //    }
     //TODO
 //    public void onConfigurationChanged(Configuration newConfig) {

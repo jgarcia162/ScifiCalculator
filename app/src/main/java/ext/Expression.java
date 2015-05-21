@@ -203,6 +203,9 @@ public class Expression {
 	public static final BigDecimal PI = new BigDecimal(
 			"3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679");
 
+    public static final BigDecimal e = new BigDecimal(
+            "2.71828182845904523536028747135266249775724709369995");
+
 	/**
 	 * The {@link java.math.MathContext} to use for calculations.
 	 */
@@ -810,6 +813,7 @@ public class Expression {
 		});
 
 		variables.put("PI", PI);
+        variables.put("e", e);
 		variables.put("TRUE", BigDecimal.ONE);
 		variables.put("FALSE", BigDecimal.ZERO);
 

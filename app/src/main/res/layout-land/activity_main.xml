@@ -9,23 +9,32 @@
     tools:context=".MainActivity">
 
     <TableRow
-        android:id="@+id/tableRow0">
+        android:id="@+id/tableRow0"
+        android:layout_weight="1">
 
     <TextView
         android:id="@+id/display"
         android:padding="5dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="75dp" />
+        android:layout_height="75dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#7d669e"
+        android:background="#FFFFFF"
+        android:layout_gravity="end|center_vertical"
+        style="?android:attr/borderlessButtonStyle"/>
 
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow1">
+        android:id="@+id/tableRow1"
+        android:layout_weight="1">
 
     <Button
         android:id="@+id/cos"
-        android:text="@string/cos"
+        android:text="cos"
+        android:textAllCaps="false"
         style="?android:attr/borderlessButtonStyle"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -38,7 +47,8 @@
 
     <Button
         android:id="@+id/sin"
-        android:text="@string/sin"
+        android:text="sin"
+        android:textAllCaps="false"
         style="?android:attr/borderlessButtonStyle"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -50,7 +60,8 @@
 
     <Button
         android:id="@+id/tan"
-        android:text="@string/tan"
+        android:text="tan"
+        android:textAllCaps="false"
         style="?android:attr/borderlessButtonStyle"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -111,11 +122,13 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow2">
+        android:id="@+id/tableRow2"
+        android:layout_weight="1">
 
     <Button
         android:id="@+id/square"
-        android:text="SQRT"
+        android:text="sqrt"
+        android:textAllCaps="false"
         android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
@@ -127,7 +140,8 @@
 
     <Button
         android:id="@+id/ln"
-        android:text="LOG10"
+        android:text="log10"
+        android:textAllCaps="false"
         android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
@@ -140,6 +154,7 @@
      <Button
          android:id="@+id/log"
          android:text="@string/log"
+         android:textAllCaps="false"
          android:textSize="20sp"
          android:textStyle="bold"
          android:padding="5dp"
@@ -189,7 +204,8 @@
         <Button
             android:id="@+id/delete"
             android:padding="5dp"
-            android:text="D"
+            android:text="d"
+            android:textAllCaps="false"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -201,12 +217,14 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow3">
+        android:id="@+id/tableRow3"
+        android:layout_weight="1">
 
     <Button
         android:id="@+id/pi"
-        android:text="PI"
-        android:textSize="25sp"
+        android:text="pi"
+        android:textAllCaps="false"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
         android:layout_width="wrap_content"
@@ -218,8 +236,8 @@
     <Button
         android:id="@+id/Deg"
         android:textAllCaps="false"
-        android:text="DEG"
-        android:textSize="25sp"
+        android:text="deg"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
         android:layout_width="wrap_content"
@@ -229,8 +247,9 @@
         style="?android:attr/borderlessButtonStyle"/>
 
     <Button
-        android:id="@+id/rad"
-        android:text="@string/rad"
+        android:id="@+id/e"
+        android:text="e"
+        android:textAllCaps="false"
         android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
@@ -280,7 +299,8 @@
             android:id="@+id/clear"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="C"
+            android:text="c"
+            android:textAllCaps="false"
             android:textSize="25sp"
             android:layout_margin="5dp"
             style="?android:attr/borderlessButtonStyle"
@@ -291,7 +311,8 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow4">
+        android:id="@+id/tableRow4"
+        android:layout_weight="1">
 
     <Button
         android:id="@+id/BigE"
@@ -381,11 +402,13 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow5">
+        android:id="@+id/tableRow5"
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/cosh"
-            android:text="@string/cosh"
+            android:text="cosh"
+            android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -397,7 +420,8 @@
 
         <Button
             android:id="@+id/sinh"
-            android:text="@string/sinh"
+            android:text="sinh"
+            android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -409,7 +433,8 @@
 
         <Button
             android:id="@+id/tanh"
-            android:text="@string/tanh"
+            android:text="tanh"
+            android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle"
             android:textSize="20sp"
             android:textStyle="bold"
