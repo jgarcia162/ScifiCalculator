@@ -64,7 +64,7 @@
             android:id="@+id/multiple"
             android:textAllCaps="false"
             android:padding="5dp"
-            android:text="x"
+            android:text="*"
             style="?android:attr/borderlessButtonStyle"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -76,7 +76,7 @@
         <Button
             android:id="@+id/divide"
             android:padding="5dp"
-            android:text="\u00F7"
+            android:text="/"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -432,7 +432,7 @@
             android:textColor="#f9845b"/>
 
         <Button
-            android:id="@+id/period"
+            android:id="@+id/decimal"
             android:padding="5dp"
             android:text="."
             android:textSize="25sp"

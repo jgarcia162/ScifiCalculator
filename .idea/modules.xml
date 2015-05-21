@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CalculatorProject.iml" filepath="$PROJECT_DIR$/CalculatorProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Expression/Expression.iml" filepath="$PROJECT_DIR$/Expression/Expression.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ScifiCalculator.iml" filepath="$PROJECT_DIR$/ScifiCalculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
+

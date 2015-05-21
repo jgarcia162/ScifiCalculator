@@ -10,27 +10,126 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 
-public class MainActivity extends Activity {
+import ext.Expression;
 
 
+public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+
+        findViewById(R.id.zero).setOnClickListener(this);
+        findViewById(R.id.number1).setOnClickListener(this);
+        findViewById(R.id.number2).setOnClickListener(this);
+        findViewById(R.id.number3).setOnClickListener(this);
+        findViewById(R.id.number4).setOnClickListener(this);
+        findViewById(R.id.number5).setOnClickListener(this);
+        findViewById(R.id.number6).setOnClickListener(this);
+        findViewById(R.id.number7).setOnClickListener(this);
+        findViewById(R.id.number8).setOnClickListener(this);
+        findViewById(R.id.number9).setOnClickListener(this);
+
         final TextView display = (TextView) findViewById(R.id.display);
 
+        final Button plusbutton = (Button) findViewById(R.id.plus);
+        plusbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(display.getText().charAt(display.length()-1) != '+'){
+                    display.append(plusbutton.getText().toString());
+                }else{
+
+                }
+            }
+        });
+
+        final Button minusbutton = (Button) findViewById(R.id.minus);
+        minusbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(display.getText().charAt(display.length()-1) != '-'){
+                    display.append(minusbutton.getText().toString());
+                }else{
+
+                }
+            }
+        });
+
+        final Button divdbutton = (Button) findViewById(R.id.divide);
+        divdbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(display.getText().charAt(display.length()-1) != '/'){
+                    display.append(divdbutton.getText().toString());
+                }else{
+
+                }
+            }
+        });
 
         final Button mulbutton = (Button) findViewById(R.id.multiple);
         mulbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                display.append(mulbutton.getText().toString());
+                if(display.getText().charAt(display.length()-1) != '*'){
+                    display.append(mulbutton.getText().toString());
+                }else{
+
+                }
             }
         });
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            final Button decimalbutton = (Button) findViewById(R.id.decimal);
+            decimalbutton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(display.getText().charAt(display.length()-1) != '.'){
+                        display.append(decimalbutton.getText().toString());
+                    }else{
+
+                    }
+
+                }
+            });
+
+        final Button equalbutton = (Button) findViewById(R.id.equal);
+        equalbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String exp = display.getText().toString();
+                try {
+
+                    Expression expression = new Expression(exp);
+
+                    BigDecimal answer = expression.eval();
+
+                    String result = answer.toPlainString();
+
+                    display.setText(result);
+
+                } catch (Exception e) {
+
+                    display.setText("syntax error");
+                }
+            }
+        });
+
+        final Button clearbutton = (Button) findViewById(R.id.clear);
+        clearbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                display.setText("");
+            }
+        });
+
+        final Button deletebutton = (Button) findViewById(R.id.delete);
+        deletebutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+            }
+        });
+
+        if (isLandscape) {
             final Button sinbutton = (Button) findViewById(R.id.sin);
             sinbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -41,7 +140,18 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
+            final Button cosbutton = (Button) findViewById(R.id.cos);
+            cosbutton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (cosbutton != null) {
+                        display.append(cosbutton.getText().toString());
+                    }
+                }
+            });
+        }
+
+        if (isLandscape) {
             final Button tanbutton = (Button) findViewById(R.id.tan);
             tanbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -52,16 +162,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        final Button divdbutton = (Button) findViewById(R.id.divide);
-        divdbutton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (divdbutton != null) {
-                    display.append(divdbutton.getText().toString());
-                }
-            }
-        });
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button sqrbutton = (Button) findViewById(R.id.square);
             sqrbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -72,7 +173,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button lnbutton = (Button) findViewById(R.id.ln);
             lnbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -84,7 +185,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button logbutton = (Button) findViewById(R.id.log);
             logbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -95,7 +196,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button pibutton = (Button) findViewById(R.id.pi);
             pibutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -106,7 +207,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button degbutton = (Button) findViewById(R.id.Deg);
             degbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -117,7 +218,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button radbutton = (Button) findViewById(R.id.rad);
             radbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -128,7 +229,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button ebutton = (Button) findViewById(R.id.BigE);
             ebutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -139,7 +240,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button openbutton = (Button) findViewById(R.id.openpara);
             openbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -150,7 +251,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button endbutton = (Button) findViewById(R.id.endpara);
             endbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -161,7 +262,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button coshbutton = (Button) findViewById(R.id.cosh);
             coshbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -172,7 +273,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button sinhbutton = (Button) findViewById(R.id.sinh);
             sinhbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -183,7 +284,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             final Button tanhbutton = (Button) findViewById(R.id.tanh);
             tanhbutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -194,8 +295,6 @@ public class MainActivity extends Activity {
             });
         }
     }
-
-
                     @Override
                     public boolean onCreateOptionsMenu (Menu menu){
                         // Inflate the menu; this adds items to the action bar if it is present.
@@ -217,5 +316,16 @@ public class MainActivity extends Activity {
 
                         return super.onOptionsItemSelected(item);
                     }
-                }
 
+    @Override
+    public void onClick(View view) {
+        final TextView display = (TextView) findViewById(R.id.display);
+
+        String buttonPressed = ((Button) view).getText().toString();
+        display.append(buttonPressed);
+
+
+
+
+    }
+}

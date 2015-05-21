@@ -285,7 +285,7 @@
             android:textColor="#3079ab"/>
 
     <Button
-        android:id="@+id/period"
+        android:id="@+id/decimal"
         android:padding="5dp"
         android:text="."
         android:textSize="40sp"

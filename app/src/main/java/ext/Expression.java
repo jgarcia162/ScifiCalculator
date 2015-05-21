@@ -24,7 +24,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package com.udojava.evalex;
+package ext;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -204,7 +204,7 @@ public class Expression {
 			"3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679");
 
 	/**
-	 * The {@link MathContext} to use for calculations.
+	 * The {@link java.math.MathContext} to use for calculations.
 	 */
 	private MathContext mc = MathContext.DECIMAL32;
 
@@ -221,12 +221,12 @@ public class Expression {
 	/**
 	 * All defined operators with name and implementation.
 	 */
-	private Map<String, Operator> operators = new HashMap<String, Expression.Operator>();
+	private Map<String, Operator> operators = new HashMap<String, Operator>();
 
 	/**
 	 * All defined functions with name and implementation.
 	 */
-	private Map<String, Function> functions = new HashMap<String, Expression.Function>();
+	private Map<String, Function> functions = new HashMap<String, Function>();
 
 	/**
 	 * All defined variables with name and value.
@@ -295,8 +295,8 @@ public class Expression {
 		 * 
 		 * @param parameters
 		 *            Parameters will be passed by the expression evaluator as a
-		 *            {@link List} of {@link BigDecimal} values.
-		 * @return The function must return a new {@link BigDecimal} value as a
+		 *            {@link java.util.List} of {@link java.math.BigDecimal} values.
+		 * @return The function must return a new {@link java.math.BigDecimal} value as a
 		 *         computing result.
 		 */
 		public abstract BigDecimal eval(List<BigDecimal> parameters);
